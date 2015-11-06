@@ -18,7 +18,7 @@
  $MyData->addPoints($latOPT);
  $MyData->addPoints($latMEO);
  $MyData->addPoints($operators,"IDs");
- $MyData->setAxisName(0,"Latency");
+ $MyData->setAxisName(0,"ms");
  $MyData->setSerieDescription("IDs","ID");
  $MyData->setAbscissa("IDs");
 
@@ -35,7 +35,8 @@
  $myPicture->drawRectangle(0,0,699,229,array("R"=>0,"G"=>0,"B"=>0));
 
  /* Set the default font */
- $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/pf_arma_five.ttf","FontSize"=>13));
+ $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/verdana.ttf","FontSize"=>13));
+ $myPicture->drawText(350,30,"Latency per Operator",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
 
  /* Define the chart area */
  $myPicture->setGraphArea(90,40,650,200);
