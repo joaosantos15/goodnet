@@ -9,18 +9,28 @@
  $operators=$_SESSION['operator'];
 
 
- $operators=array_unique($operators);
+ $operator=array_unique($operators);
 
 
  /* Create and populate the pData object */
- $MyData = new pData();  
- $MyData->addPoints($bandNOS);
- $MyData->addPoints($bandOPT);
- $MyData->addPoints($bandMEO);
- $MyData->addPoints($operators,"IDs");
+ $MyData = new pData();
+
+ if($bandNOS !=null ){   
+  $MyData->addPoints($bandNOS);
+ }
+ 
+ if($bandOPT !=null ){ 
+ 	$MyData->addPoints($bandOPT);
+ }
+
+ if($bandMEO !=null ){ 
+ 	$MyData->addPoints($bandMEO);
+ }
+
+ $MyData->addPoints($operator,"OPs");
  $MyData->setAxisName(0,"MB/s");
- $MyData->setSerieDescription("IDs","ID");
- $MyData->setAbscissa("IDs");
+ $MyData->setSerieDescription("OPs","OP");
+ $MyData->setAbscissa("OPs");
 
  /* Will replace the whole color scheme by the "light" palette */
  $MyData->loadPalette("pChart/palettes/autumn.color", TRUE);
@@ -36,7 +46,7 @@
 
  /* Set the default font */
  $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/verdana.ttf","FontSize"=>13));
- $myPicture->drawText(350,30,"Bandwidth per Client",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+ $myPicture->drawText(350,30,"Bandwidth per Operator",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
 
  /* Define the chart area */
  $myPicture->setGraphArea(90,40,650,200);

@@ -13,10 +13,19 @@
 
 
  /* Create and populate the pData object */
- $MyData = new pData();  
- $MyData->addPoints($bandFaro);
- $MyData->addPoints($bandPorto);
- $MyData->addPoints($bandLisb);
+ $MyData = new pData();
+
+ if($bandFaro !=null ){  
+ 	$MyData->addPoints($bandFaro);
+ } 
+ if($bandPorto !=null ){
+ 	$MyData->addPoints($bandPorto);
+ }
+
+ if($bandLisb !=null ){
+	$MyData->addPoints($bandLisb);
+ } 
+
  $MyData->addPoints($locations,"Locs");
  $MyData->setAxisName(0,"MB/s");
  $MyData->setSerieDescription("Locs","Loc");

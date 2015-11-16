@@ -8,13 +8,13 @@
 
  for ($i = 0; $i < $clients; $i++) {
      $bandset[$i] = $band[$i];
-     $ids[$i]=$i+1;
+     $IDs[$i]=$i+1;
  }
  
  /* Create and populate the pData object */
  $MyData = new pData();  
  $MyData->addPoints($bandset);
- $MyData->addPoints($ids,"Bs");
+ $MyData->addPoints($IDs,"Bs");
  $MyData->setAxisName(0,"MB/s");
  $MyData->setSerieDescription("Bs","B");
  $MyData->setAbscissa("Bs");

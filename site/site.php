@@ -8,10 +8,6 @@
 
 <?php
 
-
-include('lat.php');
-
-
 // inicia sessão para passar variaveis entre ficheiros php
 session_start();
 
@@ -32,7 +28,6 @@ $file_name='result.txt';
 echo 'Welcome ' .$username . '<br/>';
 $txt_file    = file_get_contents($file_name);
 $rows        = explode("\n", $txt_file);
-array_shift($rows);
 
 $id=0;
 echo("<table border=\"1\">\n");
@@ -67,7 +62,7 @@ echo("<table border=\"1\">\n");
     	}
     	
 
-    	if($info[$row]['operadora']=="OPTIMUS"){    	
+    	if($info[$row]['operadora']=="VODAFONE"){    	
     		$cliOPT=$cliOPT+1;
     		$latOPT=$latOPT+$info[$row]['latencia'];
     		$bandOPT=$bandOPT+$info[$row]['bandwidth'];
@@ -132,6 +127,7 @@ echo("<table border=\"1\">\n");
 	for ($i = 0; $i < sizeOf($info); $i++) {
 		$upArr[$i]=$info[$i]['uptime'];
 	}
+	 $_SESSION['upTime'] = $upArr;
 
 	// passa para a session um array com os valores do operador
 	for ($i = 0; $i < sizeOf($info); $i++) {
@@ -167,11 +163,14 @@ echo("<table border=\"1\">\n");
     $_SESSION['bandPorto']=$bandPorto/$cliPorto;
     $_SESSION['bandFaro']=$bandFaro/$cliFaro;
 
+
+    include 'lat.php';
     include 'latpp.php';
     include 'latArea.php';
     include 'band.php';
     include 'bandPP.php';
  	include 'bandArea.php';
+ 	include 'dispo.php';
 ?>
 
 
@@ -197,7 +196,7 @@ echo("<table border=\"1\">\n");
 
 <div class="LAT">
 <h2>Availability </h2>
-	<img class="pics" src="dispo.png" alt="Availability" style="width:304px;height:228px;">
+	<img class="pics" src="dispo.png" alt="Availability" style="width:504px;height:428px;">
 	
 </div>
 </body>

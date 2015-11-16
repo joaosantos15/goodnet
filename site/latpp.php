@@ -8,19 +8,26 @@
  $latOPT=$_SESSION['latOPT'];
  $operators=$_SESSION['operator'];
 
-
  $operators=array_unique($operators);
 
-
  /* Create and populate the pData object */
- $MyData = new pData();  
- $MyData->addPoints($latNOS);
- $MyData->addPoints($latOPT);
- $MyData->addPoints($latMEO);
- $MyData->addPoints($operators,"IDs");
+ $MyData = new pData();
+ if($latNOS !=null ){
+ 	$MyData->addPoints($latNOS);
+ }
+ 
+ if($latOPT !=null ){
+ 	$MyData->addPoints($latOPT);
+ }
+
+ if($latMEO !=null ){
+ 	$MyData->addPoints($latMEO);
+ }
+
+ $MyData->addPoints($operators,"Rators");
  $MyData->setAxisName(0,"ms");
- $MyData->setSerieDescription("IDs","ID");
- $MyData->setAbscissa("IDs");
+ $MyData->setSerieDescription("Rators","Rator");
+ $MyData->setAbscissa("Rators");
 
  /* Will replace the whole color scheme by the "light" palette */
  $MyData->loadPalette("pChart/palettes/light.color", TRUE);

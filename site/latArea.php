@@ -8,16 +8,25 @@
  $latLisb=$_SESSION['latLisb'];
  $locations=$_SESSION['area'];
 
-
- $locations=array_unique($locations);
+ $location=array_unique($locations);
 
 
  /* Create and populate the pData object */
  $MyData = new pData();  
- $MyData->addPoints($latFaro);
- $MyData->addPoints($latPorto);
- $MyData->addPoints($latLisb);
- $MyData->addPoints($locations,"IDs");
+
+ if($latFaro !=null ){   
+  $MyData->addPoints($latFaro);
+ }
+ 
+ if($latPorto !=null ){ 
+ 	$MyData->addPoints($latPorto);
+ }
+
+ if($latLisb !=null ){ 
+ 	$MyData->addPoints($latLisb);
+ }
+
+ $MyData->addPoints($location,"IDs");
  $MyData->setAxisName(0,"ms");
  $MyData->setSerieDescription("IDs","ID");
  $MyData->setAbscissa("IDs");

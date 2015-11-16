@@ -1,10 +1,9 @@
 <?php  
 /* CAT:Bar Chart */
-
- /* pChart library inclusions */
- include("pChart/class/pData.class.php");
- include("pChart/class/pDraw.class.php");
- include("pChart/class/pImage.class.php");
+/* pChart library inclusions */
+include("pChart/class/pData.class.php");
+include("pChart/class/pDraw.class.php");
+include("pChart/class/pImage.class.php");
 
  session_start();    
      
@@ -13,17 +12,17 @@
 
  for ($i = 0; $i < $clients; $i++) {
      $latset[$i] = $latency[$i];
-     $id[$i]=$i+1;
+     $ns[$i]=$i+1;
  }
 
  
  /* Create and populate the pData object */
  $MyData = new pData();  
  $MyData->addPoints($latset);
- $MyData->addPoints($id,"IDs");
+ $MyData->addPoints($ns,"Ns");
  $MyData->setAxisName(0,"ms");
- $MyData->setSerieDescription("IDs","ID");
- $MyData->setAbscissa("IDs");
+ $MyData->setSerieDescription("Ns","N");
+ $MyData->setAbscissa("Ns");
 
  /* Will replace the whole color scheme by the "light" palette */
  $MyData->loadPalette("pChart/palettes/light.color", TRUE);
