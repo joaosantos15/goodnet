@@ -3,6 +3,7 @@ rm ping.waste
 gateway="$(cat "$1" )"
 pubip="$(cat "$2" )"
 
+: <<'END'
 ping -c 2 $gateway > ping.waste
 if  [ $? = 0 ]; then
 	echo "->Gateway OK"
@@ -18,7 +19,7 @@ else
 	echo "xx BAD PubInt"
 	sh logPubError.sh
 fi 
- 
+END
 ping -c 2  www.google.pt > ping.wast
 if  [ $? = 0 ]; then
         echo "->External OK"
