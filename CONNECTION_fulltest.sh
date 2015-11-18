@@ -1,7 +1,7 @@
 #! /bin/bash
-rm -r results
-mkdir results
+rm -r CONNECTIONresults
+mkdir CONNECTIONresults
 sh findPublicIP.sh
 sh findGateway.sh
-sh testConnection.sh results/gateway.log results/pubip.log >> results/connectionTest.log
-whoami > results/user.log
+sh testConnection.sh results/gateway.log results/pubip.log >> CONNECTIONresults/connectionTest.log
+whoami > CONNECTIONresults/user.log

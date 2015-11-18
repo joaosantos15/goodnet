@@ -1,3 +1,4 @@
 #! /bin/bash
-rm  results/*
-rm results.tmp
+rm  -r CONNECTIONresults/
+rm  -r SPEEDresults/
+rm ping.wast

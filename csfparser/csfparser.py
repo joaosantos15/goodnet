@@ -31,16 +31,16 @@ def getexternalstatus(externalstring):
         return "DOWN"
 
 
-projectpath = "/Users/boss/Desktop/csf"
-
-connectionfile = open(projectpath + "/results/connectionTest.log", "r")
-gatewayfile = open(projectpath + "/results/gateway.log", "r")
-pubipfile = open(projectpath + "/results/pubip.log", "r")
+#projectpath = "/Users/boss/Desktop/csf"
+projectpath = "/home/seed/Desktop/csf"
+connectionfile = open(projectpath + "/CONNECTIONresults/connectionTest.log", "r")
+gatewayfile = open(projectpath + "/CONNECTIONresults/gateway.log", "r")
+pubipfile = open(projectpath + "/CONNECTIONresults/pubip.log", "r")
 uploadspeedfile = open(projectpath + "/SPEEDresults/upload.log", "r")
 downloadspeedfile = open(projectpath + "/SPEEDresults/download.log", "r")
 latencyfile = open(projectpath + "/SPEEDresults/latency.log", "r")
 ispfile = open(projectpath + "/SPEEDresults/isp.log", "r")
-userfile = open(projectpath + "/results/user.log", "r")
+userfile = open(projectpath + "/CONNECTIONresults/user.log", "r")
 
 gatewayline = gatewayfile.readline()
 pubipline = pubipfile.readline()
