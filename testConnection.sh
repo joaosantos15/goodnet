@@ -1,9 +1,8 @@
 #! /bin/bash
-rm ping.waste
+: <<'END'
 gateway="$(cat "$1" )"
 pubip="$(cat "$2" )"
 
-: <<'END'
 ping -c 2 $gateway > ping.waste
 if  [ $? = 0 ]; then
 	echo "->Gateway OK"
