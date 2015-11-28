@@ -1,6 +1,6 @@
 import sys
 import csfparser
-import mysqljoao
+import mysql_lib
 import json
 
 pi_config = "pi_info.json"
@@ -16,7 +16,7 @@ def send_connection_results():
     print ("sending connection to db")
     pubip = csfparser.get_pubip()
     available = csfparser.get_external_status()
-    mysqljoao.db_query_add_connection_record(idpi,pubip,available)
+    mysql_lib.db_query_add_connection_record(idpi, pubip, available)
 
 
 def send_speed_results():
@@ -24,7 +24,7 @@ def send_speed_results():
     download_speed = csfparser.get_download_speed()
     upload_speed = csfparser.get_upload_speed()
     latency = csfparser.get_latency()
-    mysqljoao.db_query_add_speed_record(idpi,upload_speed,download_speed,latency)
+    mysql_lib.db_query_add_speed_record(idpi, upload_speed, download_speed, latency)
 
 def get_mode():
     if "connection" in sys.argv[1].lower():
