@@ -73,19 +73,19 @@ def get_download_speed():
     download = parse_speed(downloadspeedline)
     return download
 
-def get_latency(latencystring):
-    return re.findall("\d+.\d+", latencystring)[1]
+def get_latency():
+    return re.findall("\d+.\d+", latencyline)[1]
 
 
-def get_area(latencystr):
-    start = latencystr.find('(') + 1
-    stop = latencystr.find(')')
-    m = latencystr
+def get_area():
+    start = latencyline.find('(') + 1
+    stop = latencyline.find(')')
+    m = latencyline
     m = m[start:stop]
     return m
 
 
-def get_isp(ispstring):
+def get_isp():
     if "nos" in ispstring.lower():
         return "NOS"
     if "vodafone" in ispstring.lower():
@@ -100,8 +100,8 @@ def get_isp(ispstring):
         return "Other"
 
 
-def get_external_status(externalstring):
-    if "ok" in externalstring.lower():
+def get_external_status():
+    if "ok" in externalline.lower():
         return "OK"
     else:
         return "DOWN"
@@ -126,10 +126,10 @@ def test(a):
     pubip = get_pubip()
     username = get_username()
 
-    latency = get_latency(latencyline)
+    latency = get_latency()
     #isp = get_isp(ispline)
-    area = get_area(latencyline)
-    externalstatus = get_external_status(externalline)
+    area = get_area()
+    externalstatus = get_external_status()
 
     uploadspeed="20"
     downloadspeed="44"
@@ -144,4 +144,4 @@ def test(a):
         print (  username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + area + ";")
 
 #test(1) to print to file, test(0) to print to terminal
-#test(0)
+test(0)

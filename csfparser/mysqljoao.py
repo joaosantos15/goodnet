@@ -46,7 +46,21 @@ def db_query_add_connection_record(idpi,pubip,available):
     cnx.close()
 
 
-def test():
+#INSERT INTO `ist174008`.`SPEED` (`idPi`, `uploadSpeed`, `downloadSpeed`, `latency`) VALUES ('5', '10', '100', '24');
+
+def db_query_add_speed_record(idpi,upload_speed,download_speed,latency):
+    cnx = db_getdbconnection()
+    cursor = cnx.cursor()
+    values = (idpi,upload_speed,download_speed,latency)
+
+    query = "INSERT INTO `ist174008`.`SPEED` (`idPi`, `uploadSpeed`, `downloadSpeed`, `latency`) VALUES (%s,%s,%s,%s);"
+    cursor.execute(query,values)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+
+
+def test_connection_query():
     if (db_getdbconnection() != False):
         print ("connected to db")
 
@@ -59,5 +73,18 @@ def test():
             print ("ID " + str(istID) + " " + "timeStamp" + str(timeStamp))
 
         """
-#test()
+def test_speed_query():
+    if (db_getdbconnection() != False):
+        print ("connected to db")
+
+        db_query_add_speed_record("9","14","233","22")
+        """
+        query = "SELECT * FROM ist176550.DAILY_REGISTER;"
+        result = db_query(query)
+
+        for (id, istID, timeStamp) in result:
+            print ("ID " + str(istID) + " " + "timeStamp" + str(timeStamp))
+
+        """
+#test_speed_query()
 # db_query_add_user("jjo","ist64455","jh44kjh","a")
