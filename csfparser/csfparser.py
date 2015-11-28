@@ -38,7 +38,8 @@ def getexternalstatus(externalstring):
 
 
 #projectpath = "/Users/boss/Desktop/csf"
-projectpath = "/storage/csf"
+#projectpath = "/storage/csf"
+projectpath = "/Users/boss/Documents/Git/csf/csfparser"
 connectionfile = open(projectpath + "/CONNECTIONresults/connectionTest.log", "r")
 gatewayfile = open(projectpath + "/CONNECTIONresults/gateway.log", "r")
 pubipfile = open(projectpath + "/CONNECTIONresults/pubip.log", "r")
