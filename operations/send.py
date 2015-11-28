@@ -1,7 +1,9 @@
 import sys
-import csfparser
 import mysql_lib
 import json
+import measure
+import csfparser
+
 
 pi_config = "pi_info.json"
 
@@ -14,8 +16,9 @@ def parse_pi_info():
 
 def send_connection_results():
     print ("sending connection to db")
-    pubip = csfparser.get_pubip()
-    available = csfparser.get_external_status()
+    #pubip = csfparser.get_pubip()
+    pubip = measure.get_public_ip()
+    available = measure.get_connection_status()
     mysql_lib.db_query_add_connection_record(idpi, pubip, available)
 
 
@@ -48,6 +51,7 @@ def main():
         print("pupu...")
 
 parse_pi_info()
+#send_connection_results()
 main()
 
 
