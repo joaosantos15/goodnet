@@ -1,21 +1,91 @@
 import re
 
+speedstring=None
+latencystring = None
+latencystr = None
+ispstring = None
+externalstring = None
 
-def getspeed(speedstring):
+connectionfile = None
+gatewayfile = None
+pubipfile = None
+latencyfile = None
+ispfile = None
+userfile = None
+
+
+
+# projectpath = "/Users/boss/Desktop/csf"
+# projectpath = "/storage/csf"
+projectpath = "/Users/boss/Documents/Git/csf"
+
+def parse_logs_connection():
+    global connectionfile, gatewayfile, pubipfile, latencyfile,ispfile,userfile
+
+    connectionfile = open(projectpath + "/CONNECTIONresults/connectionTest.log", "r")
+    gatewayfile = open(projectpath + "/CONNECTIONresults/gateway.log", "r")
+    pubipfile = open(projectpath + "/CONNECTIONresults/pubip.log", "r")
+    userfile = open(projectpath + "/CONNECTIONresults/user.log", "r")
+
+def get_info_from_lines_connection():
+    global gatewayline,pubipline,latencyline,ispline,externalline,userline
+
+    gatewayline = gatewayfile.readline()
+    pubipline = pubipfile.readline()
+    externalline = connectionfile.readline()
+    userline = userfile.readline()
+
+def parse_logs_speed():
+    global uploadspeedfile,downloadspeedfile,latencyfile, ispfile
+
+    latencyfile = open(projectpath + "/SPEEDresults/latency.log", "r")
+    uploadspeedfile = open(projectpath + "/SPEEDresults/upload.log", "r")
+    downloadspeedfile = open(projectpath + "/SPEEDresults/download.log", "r")
+    ispfile = open(projectpath + "/SPEEDresults/isp.log", "r")
+
+
+def get_info_from_lines_speed():
+    global uploadspeedline,downloadspeedline,latencyline, ispline
+
+
+    latencyline = latencyfile.readline()
+    uploadspeedline = uploadspeedfile.readline()
+    downloadspeedline = downloadspeedfile.readline()
+    ispline = ispfile.readline()
+
+
+def init_connection():
+    parse_logs_connection()
+    get_info_from_lines_connection()
+
+def init_speed():
+    parse_logs_speed()
+    get_info_from_lines_speed()
+
+def parse_speed(speedstring):
     return re.findall("\d+.\d+", speedstring)[0]
 
+def get_upload_speed():
+    upload = parse_speed(uploadspeedline)
+    return upload
 
-def getlatency(latencystring):
+def get_download_speed():
+    download = parse_speed(downloadspeedline)
+    return download
+
+def get_latency(latencystring):
     return re.findall("\d+.\d+", latencystring)[1]
 
-def getarea(latencystr):
-    start=latencystr.find('(')+1
-    stop=latencystr.find(')')
-    m=latencystr
-    m=m[start:stop]
+
+def get_area(latencystr):
+    start = latencystr.find('(') + 1
+    stop = latencystr.find(')')
+    m = latencystr
+    m = m[start:stop]
     return m
 
-def getisp(ispstring):
+
+def get_isp(ispstring):
     if "nos" in ispstring.lower():
         return "NOS"
     if "vodafone" in ispstring.lower():
@@ -30,59 +100,48 @@ def getisp(ispstring):
         return "Other"
 
 
-def getexternalstatus(externalstring):
+def get_external_status(externalstring):
     if "ok" in externalstring.lower():
         return "OK"
     else:
         return "DOWN"
 
+def get_gateway():
+    gate=gatewayline.replace("\n", "")
+    return gate
 
-#projectpath = "/Users/boss/Desktop/csf"
-#projectpath = "/storage/csf"
-projectpath = "/Users/boss/Documents/Git/csf/csfparser"
-connectionfile = open(projectpath + "/CONNECTIONresults/connectionTest.log", "r")
-gatewayfile = open(projectpath + "/CONNECTIONresults/gateway.log", "r")
-pubipfile = open(projectpath + "/CONNECTIONresults/pubip.log", "r")
-uploadspeedfile = open(projectpath + "/SPEEDresults/upload.log", "r")
-downloadspeedfile = open(projectpath + "/SPEEDresults/download.log", "r")
-latencyfile = open(projectpath + "/SPEEDresults/latency.log", "r")
-ispfile = open(projectpath + "/SPEEDresults/isp.log", "r")
-userfile = open(projectpath + "/CONNECTIONresults/user.log", "r")
+def get_pubip():
+    pubip = pubipline.replace("\n", "")
+    return pubip
 
-gatewayline = gatewayfile.readline()
-pubipline = pubipfile.readline()
-uploadspeedline = uploadspeedfile.readline()
-downloadspeedline = downloadspeedfile.readline()
-latencyline = latencyfile.readline()
-ispline = ispfile.readline()
-externalline = connectionfile.readline()
-userline = userfile.readline()
-# DEBUG
-"""
-print(gatewayline)
-print(pubipline)
-print(uploadspeedline)
-print(downloadspeedline)
-"""
-gateway = gatewayline.replace("\n", "")
-pubip = pubipline.replace("\n", "")
-uploadspeed = getspeed(uploadspeedline)
-downloadspeed = getspeed(downloadspeedline)
-latency = getlatency(latencyline)
-isp = getisp(ispline)
-area=getarea(latencyline)
-externalstatus = getexternalstatus(externalline)
-username = userline.replace("\n", "")
+def get_username():
+    username = userline.replace("\n", "")
+    return username
 
-# DEBUG
-"""print ("up: "+uploadspeed+" down: "+downloadspeed)"""
+def test(a):
+    init_connection()
+    init_speed()
 
-# Nome;         Gateway         IP;             External;       Upload;   Download;   Latencia;   Bandwidth;  Operador;Area
-# Passos Portas; 192.168.1.254;  192.168.1.45;   OK;              234;     79;          300;        79;         MEO;
-# print (username+";"+gateway+";"+pubip+";"+externalstatus+";"+uploadspeed+";"+";"+latency+";"+downloadspeed+";"+isp + ";"+area)
+    gateway = get_gateway()
+    pubip = get_pubip()
+    username = get_username()
 
-outputfile = open(projectpath + "/SEND.txt", "a")
-outputfile.write(
-    username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + isp+";"+ area+";")
-outputfile.write("\n")
-outputfile.close()
+    latency = get_latency(latencyline)
+    #isp = get_isp(ispline)
+    area = get_area(latencyline)
+    externalstatus = get_external_status(externalline)
+
+    uploadspeed="20"
+    downloadspeed="44"
+
+    if a == 1:
+        outputfile = open(projectpath + "/SEND.txt", "a")
+        outputfile.write(
+            username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + area + ";")
+        outputfile.write("\n")
+        outputfile.close()
+    else:
+        print (  username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + area + ";")
+
+#test(1) to print to file, test(0) to print to terminal
+#test(0)
