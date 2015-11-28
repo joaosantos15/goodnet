@@ -8,6 +8,12 @@ def getspeed(speedstring):
 def getlatency(latencystring):
     return re.findall("\d+.\d+", latencystring)[1]
 
+def getarea(latencystr):
+    start=latencystr.find('(')+1
+    stop=latencystr.find(')')
+    m=latencystr
+    m=m[start:stop]
+    return m
 
 def getisp(ispstring):
     if "nos" in ispstring.lower():
@@ -32,7 +38,7 @@ def getexternalstatus(externalstring):
 
 
 #projectpath = "/Users/boss/Desktop/csf"
-projectpath = "/home/seed/Desktop/csf"
+projectpath = "/storage/csf"
 connectionfile = open(projectpath + "/CONNECTIONresults/connectionTest.log", "r")
 gatewayfile = open(projectpath + "/CONNECTIONresults/gateway.log", "r")
 pubipfile = open(projectpath + "/CONNECTIONresults/pubip.log", "r")
@@ -63,17 +69,19 @@ uploadspeed = getspeed(uploadspeedline)
 downloadspeed = getspeed(downloadspeedline)
 latency = getlatency(latencyline)
 isp = getisp(ispline)
+area=getarea(latencyline)
 externalstatus = getexternalstatus(externalline)
 username = userline.replace("\n", "")
 
 # DEBUG
 """print ("up: "+uploadspeed+" down: "+downloadspeed)"""
 
-# Nome;         Gateway         IP;             External;       Upload;   Download;   Latencia;   Bandwidth;  Operador
-# Passos Portas; 192.168.1.254;  192.168.1.45;   OK;              234;     0;          300;        79;         MEO;
-# print (username+";"+gateway+";"+pubip+";"+externalstatus+";"+uploadspeed+";"+"0"+";"+latency+";"+downloadspeed+";"+isp)
+# Nome;         Gateway         IP;             External;       Upload;   Download;   Latencia;   Bandwidth;  Operador;Area
+# Passos Portas; 192.168.1.254;  192.168.1.45;   OK;              234;     79;          300;        79;         MEO;
+# print (username+";"+gateway+";"+pubip+";"+externalstatus+";"+uploadspeed+";"+";"+latency+";"+downloadspeed+";"+isp + ";"+area)
 
-outputfile = open(projectpath + "/SEND.txt", "w")
+outputfile = open(projectpath + "/SEND.txt", "a")
 outputfile.write(
-    username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + "0" + ";" + latency + ";" + downloadspeed + ";" + isp)
+    username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + isp+";"+ area+";")
+outputfile.write("\n")
 outputfile.close()
