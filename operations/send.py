@@ -19,8 +19,15 @@ def execute_connection_query(time_stamp,idpi, pubip, available):
 
 def send_connection_results():
     logs = log_json.get_json_data()
-    for obj in logs:
-        execute_connection_query(obj['time_stamp'],obj['pi_id'],obj['pub_ip'],obj['status'])
+    try:
+        for obj in logs:
+            execute_connection_query(obj['time_stamp'],obj['pi_id'],obj['pub_ip'],obj['status'])
+    except Exception as e:
+        print("Erro ao enviar logs")
+        print e.message
+        return
+    #if logs correctly sent to db, delete logs
+    log_json.delete_connection_log()
 
 
 def send_speed_results():
@@ -45,7 +52,10 @@ def main():
 
     if "error" not in procedure:
         if "connection" in procedure:
-            send_connection_results()
+            if measure.check_connection_to_send_log():
+                send_connection_results()
+            else:
+                return
         elif "speed" in procedure:
             send_speed_results()
     else:

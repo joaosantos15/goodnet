@@ -1,4 +1,5 @@
 import json
+import os
 
 #file_json = "test.json"
 file_json = "results/connection_log.json"
@@ -23,6 +24,9 @@ def add_log(log):
 def add_connection_log(time_stamp, pi_id, pub_ip,status):
     log= {'time_stamp':time_stamp,'pi_id':pi_id,'pub_ip':pub_ip,'status':status}
     add_log(log)
+
+def delete_connection_log():
+    os.remove(file_json)
 
 """
 
