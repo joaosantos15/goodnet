@@ -144,4 +144,4 @@ def test(a):
         print (  username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + area + ";")
 
 #test(1) to print to file, test(0) to print to terminal
-test(0)
+#test(0)

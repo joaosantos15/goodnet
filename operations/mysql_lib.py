@@ -34,12 +34,12 @@ def db_query(query):
 
 #INSERT INTO `ist174008`.`AVAILABILITY` (`idPi`, `pubIP`, `available`) VALUES ('4', '195.122.20.20', 'OK');
 
-def db_query_add_connection_record(idpi,pubip,available):
+def db_query_add_connection_record(time_stamp,idpi,pubip,available):
     cnx = db_getdbconnection()
     cursor = cnx.cursor()
-    values = (idpi,pubip,available)
+    values = (time_stamp,idpi,pubip,available)
 
-    query = "INSERT INTO `ist174008`.`AVAILABILITY` (`idPi`, `pubIP`, `available`) VALUES (%s, %s, %s);"
+    query = "INSERT INTO `ist174008`.`AVAILABILITY` (`timeStamp`,`idPi`, `pubIP`, `available`) VALUES (%s, %s, %s, %s);"
     cursor.execute(query,values)
     cnx.commit()
     cursor.close()
