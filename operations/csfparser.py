@@ -1,4 +1,6 @@
 import re
+import os
+
 
 speedstring=None
 latencystring = None
@@ -14,10 +16,12 @@ ispfile = None
 userfile = None
 
 
+projectpath = os.path.dirname(os.path.abspath(__file__))
+projectpath=projectpath+"/.."
 
 # projectpath = "/Users/boss/Desktop/csf"
 # projectpath = "/storage/csf"
-projectpath = "/Users/boss/Documents/Git/csf"
+#projectpath = "/Users/boss/Documents/Git/csf"
 
 def parse_logs_connection():
     global connectionfile, gatewayfile, pubipfile, latencyfile,ispfile,userfile
@@ -144,4 +148,4 @@ def test(a):
         print (  username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + area + ";")
 
 #test(1) to print to file, test(0) to print to terminal
-#test(0)
+test(0)

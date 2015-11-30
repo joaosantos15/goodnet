@@ -2,7 +2,8 @@ import json
 import os
 
 #file_json = "test.json"
-projectpath = "/Users/boss/Documents/Git/csf/operations"
+projectpath = os.path.dirname(os.path.abspath(__file__))
+#projectpath = "/Users/boss/Documents/Git/csf/operations"
 
 file_connection_json = projectpath+"/results/connection_log.json"
 file_speed_json = projectpath+"/results/speed_log.json"

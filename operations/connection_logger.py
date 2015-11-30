@@ -2,8 +2,10 @@ import measure
 import time
 import json
 import log_json
+import os
 
-projectpath = "/Users/boss/Documents/Git/csf/operations"
+projectpath = os.path.dirname(os.path.abspath(__file__))
+#projectpath = "/Users/boss/Documents/Git/csf/operations"
 pi_config = projectpath+"/pi_info.json"
 
 

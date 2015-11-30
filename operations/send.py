@@ -4,8 +4,9 @@ import json
 import measure
 import csfparser
 import log_json
-
-projectpath = "/Users/boss/Documents/Git/csf/operations"
+import os
+projectpath = os.path.dirname(os.path.abspath(__file__))
+#projectpath = "/Users/boss/Documents/Git/csf/operations"
 
 
 pi_config = projectpath+"/pi_info.json"

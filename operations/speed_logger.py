@@ -3,8 +3,9 @@ import time
 import json
 import log_json
 import csfparser
+import os
 
-projectpath = "/Users/boss/Documents/Git/csf/operations"
+projectpath = os.path.dirname(os.path.abspath(__file__))
 pi_config = projectpath+"/pi_info.json"
 
 
@@ -28,4 +29,5 @@ def generate_speed_log():
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
     log_json.add_speed_log(timestamp,pi_id,download_speed,upload_speed,latency)
 
-generate_speed_log()
+#generate_speed_log()
+
