@@ -5,12 +5,17 @@ import os
 projectpath = os.path.dirname(os.path.abspath(__file__))
 #projectpath = "/Users/boss/Documents/Git/csf/operations"
 
+if not os.path.exists(projectpath+"/results"):
+    os.makedirs(projectpath+"/results")
+
 file_connection_json = projectpath+"/results/connection_log.json"
 file_speed_json = projectpath+"/results/speed_log.json"
 
 
 
 def get_json_data(file):
+    if not os.path.exists(projectpath+"/results"):
+        os.makedirs(projectpath+"/results")
     try:
         with open(file) as f:
             return json.load(f)
