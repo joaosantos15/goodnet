@@ -5,10 +5,12 @@ import measure
 import csfparser
 import log_json
 
+projectpath = "/Users/boss/Documents/Git/csf/operations"
 
-pi_config = "pi_info.json"
-log_connection_file = "results/connection_log.json"
-log_speed_file = "results/speed_log.json"
+
+pi_config = projectpath+"/pi_info.json"
+log_connection_file = projectpath+"/results/connection_log.json"
+log_speed_file = projectpath+"/results/speed_log.json"
 
 def parse_pi_info():
     global pi_config

@@ -4,7 +4,8 @@ import json
 import log_json
 import csfparser
 
-pi_config = "pi_info.json"
+projectpath = "/Users/boss/Documents/Git/csf/operations"
+pi_config = projectpath+"/pi_info.json"
 
 
 def parse_pi_info():

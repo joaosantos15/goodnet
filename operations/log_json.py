@@ -2,8 +2,10 @@ import json
 import os
 
 #file_json = "test.json"
-file_connection_json = "results/connection_log.json"
-file_speed_json = "results/speed_log.json"
+projectpath = "/Users/boss/Documents/Git/csf/operations"
+
+file_connection_json = projectpath+"/results/connection_log.json"
+file_speed_json = projectpath+"/results/speed_log.json"
 
 
 
