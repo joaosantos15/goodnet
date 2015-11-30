@@ -2,32 +2,36 @@ import json
 import os
 
 #file_json = "test.json"
-file_json = "results/connection_log.json"
+file_connection_json = "results/connection_log.json"
+file_speed_json = "results/speed_log.json"
 
 
 
 def get_json_data():
     try:
-        with open(file_json) as f:
+        with open(file_connection_json) as f:
             return json.load(f)
     except Exception:
         a=[]
         return a
 
 
-def add_log(log):
+def add_log(log,file):
     data = get_json_data()
     data.append(log)
-    with open(file_json, 'w') as f:
+    with open(file, 'w') as f:
         json.dump(data, f)
 
 def add_connection_log(time_stamp, pi_id, pub_ip,status):
     log= {'time_stamp':time_stamp,'pi_id':pi_id,'pub_ip':pub_ip,'status':status}
-    add_log(log)
+    add_log(log,file_connection_json)
 
 def delete_connection_log():
-    os.remove(file_json)
+    os.remove(file_connection_json)
 
+def add_speed_log(time_stamp, pi_id, download_speed, upload_speed,latency):
+    log={'time_stamp': time_stamp, 'pi_id':pi_id,'download_speed':download_speed, 'upload_speed':upload_speed,'latency':latency}
+    add_log(log,file_speed_json)
 """
 
 logs=[]

@@ -2,6 +2,7 @@ import measure
 import time
 import json
 import log_json
+import csfparser
 
 pi_config = "pi_info.json"
 
@@ -16,11 +17,14 @@ def parse_pi_info():
 
 
 # generate new log
-def generate_connection_log():
+def generate_speed_log():
     parse_pi_info()
-    pub_ip = measure.get_public_ip()
-    connection_status = measure.get_connection_status()
+    #pub_ip = measure.get_public_ip()
+    csfparser.init_speed()
+    download_speed = csfparser.get_download_speed()
+    upload_speed = csfparser.get_upload_speed()
+    latency = csfparser.get_latency()
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
-    log_json.add_connection_log(timestamp, pi_id, pub_ip, connection_status)
+    log_json.add_speed_log(timestamp,pi_id,download_speed,upload_speed,latency)
 
-generate_connection_log()
+generate_speed_log()
