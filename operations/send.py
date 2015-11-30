@@ -7,7 +7,8 @@ import log_json
 
 
 pi_config = "pi_info.json"
-log_file = "results/connection_log.json"
+log_connection_file = "results/connection_log.json"
+log_speed_file = "results/speed_log.json"
 
 def parse_pi_info():
     global pi_config
@@ -17,17 +18,33 @@ def parse_pi_info():
 def execute_connection_query(time_stamp,idpi, pubip, available):
     mysql_lib.db_query_add_connection_record(time_stamp,idpi, pubip, available)
 
+def execute_speed_query(time_stamp,idpi,download_speed,upload_speed,latency):
+    mysql_lib.db_query_add_speed_record(idpi, upload_speed, download_speed, latency)
+
+
 def send_connection_results():
-    logs = log_json.get_json_data()
+    logs = log_json.get_json_data(log_connection_file)
     try:
         for obj in logs:
             execute_connection_query(obj['time_stamp'],obj['pi_id'],obj['pub_ip'],obj['status'])
     except Exception as e:
-        print("Erro ao enviar logs")
+        print("Erro ao enviar logs de conexao")
         print e.message
         return
     #if logs correctly sent to db, delete logs
-    log_json.delete_connection_log()
+    log_json.delete_speed_log()
+
+def new_send_speed_results():
+    logs = log_json.get_json_data(log_speed_file)
+    try:
+        for obj in logs:
+            execute_speed_query(obj['time_stamp'],obj['pi_id'],obj['download_speed'],obj['upload_speed'],obj['latency'])
+    except Exception as e:
+        print("Erro ao enviar logs de velocidade")
+        print e.args
+        return
+    #if logs correctly sent to db, delete logs
+    log_json.delete_speed_log()
 
 
 def send_speed_results():
@@ -62,7 +79,8 @@ def main():
         print("pupu...")
 
 #parse_pi_info()
-send_connection_results()
+#send_connection_results()
+#new_send_speed_results()
 #main()
 
 

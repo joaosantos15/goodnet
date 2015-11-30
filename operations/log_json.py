@@ -7,9 +7,9 @@ file_speed_json = "results/speed_log.json"
 
 
 
-def get_json_data():
+def get_json_data(file):
     try:
-        with open(file_connection_json) as f:
+        with open(file) as f:
             return json.load(f)
     except Exception:
         a=[]
@@ -17,7 +17,7 @@ def get_json_data():
 
 
 def add_log(log,file):
-    data = get_json_data()
+    data = get_json_data(file)
     data.append(log)
     with open(file, 'w') as f:
         json.dump(data, f)
@@ -32,6 +32,10 @@ def delete_connection_log():
 def add_speed_log(time_stamp, pi_id, download_speed, upload_speed,latency):
     log={'time_stamp': time_stamp, 'pi_id':pi_id,'download_speed':download_speed, 'upload_speed':upload_speed,'latency':latency}
     add_log(log,file_speed_json)
+
+def delete_speed_log():
+    os.remove(file_speed_json)
+
 """
 
 logs=[]
