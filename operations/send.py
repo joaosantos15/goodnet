@@ -35,7 +35,7 @@ def send_connection_results():
         print e.message
         return
     #if logs correctly sent to db, delete logs
-    log_json.delete_speed_log()
+    log_json.delete_connection_log()
 
 def new_send_speed_results():
     logs = log_json.get_json_data(log_speed_file)

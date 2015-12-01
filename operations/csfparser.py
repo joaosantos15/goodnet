@@ -22,7 +22,7 @@ projectpath=projectpath+"/.."
 # projectpath = "/Users/boss/Desktop/csf"
 # projectpath = "/storage/csf"
 #projectpath = "/Users/boss/Documents/Git/csf"
-
+"""
 def parse_logs_connection():
     global connectionfile, gatewayfile, pubipfile, latencyfile,ispfile,userfile
 
@@ -38,7 +38,7 @@ def get_info_from_lines_connection():
     pubipline = pubipfile.readline()
     externalline = connectionfile.readline()
     userline = userfile.readline()
-
+"""
 def parse_logs_speed():
     global uploadspeedfile,downloadspeedfile,latencyfile, ispfile
 
@@ -57,11 +57,11 @@ def get_info_from_lines_speed():
     downloadspeedline = downloadspeedfile.readline()
     ispline = ispfile.readline()
 
-
+"""
 def init_connection():
     parse_logs_connection()
     get_info_from_lines_connection()
-
+"""
 def init_speed():
     parse_logs_speed()
     get_info_from_lines_speed()
@@ -103,7 +103,7 @@ def get_isp():
     else:
         return "Other"
 
-
+"""
 def get_external_status():
     if "ok" in externalline.lower():
         return "OK"
@@ -121,7 +121,8 @@ def get_pubip():
 def get_username():
     username = userline.replace("\n", "")
     return username
-
+"""
+"""
 def test(a):
     init_connection()
     init_speed()
@@ -149,3 +150,4 @@ def test(a):
 
 #test(1) to print to file, test(0) to print to terminal
 test(0)
+"""
