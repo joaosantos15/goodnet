@@ -29,5 +29,5 @@ def generate_speed_log():
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
     log_json.add_speed_log(timestamp,pi_id,download_speed,upload_speed,latency)
 
-#generate_speed_log()
+generate_speed_log()
 

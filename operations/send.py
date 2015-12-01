@@ -68,6 +68,7 @@ def get_mode():
 def main():
     global idpi
     procedure = get_mode()
+    parse_pi_info()
     idpi = pi_data["pi"][0]["id"]
 
     if "error" not in procedure:
@@ -77,13 +78,14 @@ def main():
             else:
                 return
         elif "speed" in procedure:
-            send_speed_results()
+            new_send_speed_results()
     else:
         print("pupu...")
 
-#parse_pi_info()
+#
 #send_connection_results()
+#parse_pi_info()
 #new_send_speed_results()
-main()
+#main()
 
 
