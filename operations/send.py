@@ -86,6 +86,6 @@ def main():
 #send_connection_results()
 #parse_pi_info()
 #new_send_speed_results()
-#main()
+main()
 
 
