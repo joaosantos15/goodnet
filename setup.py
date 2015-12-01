@@ -8,5 +8,5 @@ setup(
     license='',
     author='joaosantos',
     author_email='',
-    description=''
+    description='', requires=['mysql']
 )
