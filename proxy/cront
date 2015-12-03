@@ -1,4 +1,0 @@
-*/5  *    *    *    * cd /storage/csf && ./CONNECTION_fulltest.sh
-30   *    *    *    * cd  /storage/csf && ./SPEED_fulltest.sh
-*/5 *    *    *    *     python /storage/csf/csfparser/csfparser.py
-30 22  *  *  *   scp /storage/csf/SEND.txt diogo@192.168.1.80:/var/www/html

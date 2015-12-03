@@ -1,18 +1,29 @@
 import sys
 import mysql_lib
 import json
-import measure
-import csfparser
 import log_json
 import os
+from json import load
+from urllib2 import urlopen
 
 projectpath = os.path.dirname(os.path.abspath(__file__))
 #projectpath = "/Users/boss/Documents/Git/csf/operations"
 
 
 pi_config = projectpath+"/pi_info.json"
-log_connection_file = projectpath+"/results/connection_log.json"
-log_speed_file = projectpath+"/results/speed_log.json"
+#log_connection_file = projectpath+"/results/connection_log.json"
+#log_speed_file = projectpath+"/results/speed_log.json"
+
+log_connection_file = sys.argv[2]
+log_speed_file = sys.argv[2]
+
+def check_connection_to_send_log():
+    try:
+        load(urlopen('https://api.ipify.org/?format=json'))['ip']
+    except Exception as e:
+        return False
+    return True
+
 
 def parse_pi_info():
     global pi_config
@@ -36,7 +47,7 @@ def send_connection_results():
         print e.message
         return
     #if logs correctly sent to db, delete logs
-    log_json.delete_connection_log()
+    log_json.delete_connection_log(log_connection_file)
 
 def new_send_speed_results():
     logs = log_json.get_json_data(log_speed_file)
@@ -48,15 +59,10 @@ def new_send_speed_results():
         print e.args
         return
     #if logs correctly sent to db, delete logs
-    log_json.delete_speed_log()
+    log_json.delete_speed_log(log_speed_file)
 
 
-def send_speed_results():
-    print ("sending speed to db")
-    download_speed = csfparser.get_download_speed()
-    upload_speed = csfparser.get_upload_speed()
-    latency = csfparser.get_latency()
-    mysql_lib.db_query_add_speed_record(idpi, upload_speed, download_speed, latency)
+
 
 def get_mode():
     if "connection" in sys.argv[1].lower():
@@ -74,7 +80,7 @@ def main():
 
     if "error" not in procedure:
         if "connection" in procedure:
-            if measure.check_connection_to_send_log():
+            if check_connection_to_send_log():
                 send_connection_results()
             else:
                 return

@@ -34,15 +34,15 @@ def add_connection_log(time_stamp, pi_id, pub_ip,status):
     log= {'time_stamp':time_stamp,'pi_id':pi_id,'pub_ip':pub_ip,'status':status}
     add_log(log,file_connection_json)
 
-def delete_connection_log():
-    os.remove(file_connection_json)
+def delete_connection_log(file_path):
+    os.remove(file_path)
 
 def add_speed_log(time_stamp, pi_id, download_speed, upload_speed,latency):
     log={'time_stamp': time_stamp, 'pi_id':pi_id,'download_speed':download_speed, 'upload_speed':upload_speed,'latency':latency}
     add_log(log,file_speed_json)
 
-def delete_speed_log():
-    os.remove(file_speed_json)
+def delete_speed_log(file_path):
+    os.remove(file_path)
 
 """
 

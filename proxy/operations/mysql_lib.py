@@ -1,8 +1,12 @@
 import mysql.connector
 import json
 from pprint import pprint
+import os
 
-dbconffile = 'dbdata.json'
+projectpath = os.path.dirname(os.path.abspath(__file__))
+
+
+dbconffile = projectpath+'/dbdata.json'
 #dbconffile = 'dbdata.json'
 
 
