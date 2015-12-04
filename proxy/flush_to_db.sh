@@ -1,6 +1,4 @@
 #!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd ${DIR}
-python gen_send_script.py
-sh auto_gen.sh
+python /home/proxy/goodnet/proxy/gen_send_script.py
+sh /home/proxy/goodnet/proxy/auto_gen.sh
