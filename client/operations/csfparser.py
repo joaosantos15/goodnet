@@ -22,23 +22,7 @@ projectpath=projectpath+"/.."
 # projectpath = "/Users/boss/Desktop/csf"
 # projectpath = "/storage/csf"
 #projectpath = "/Users/boss/Documents/Git/csf"
-"""
-def parse_logs_connection():
-    global connectionfile, gatewayfile, pubipfile, latencyfile,ispfile,userfile
 
-    connectionfile = open(projectpath + "/CONNECTIONresults/connectionTest.log", "r")
-    gatewayfile = open(projectpath + "/CONNECTIONresults/gateway.log", "r")
-    pubipfile = open(projectpath + "/CONNECTIONresults/pubip.log", "r")
-    userfile = open(projectpath + "/CONNECTIONresults/user.log", "r")
-
-def get_info_from_lines_connection():
-    global gatewayline,pubipline,latencyline,ispline,externalline,userline
-
-    gatewayline = gatewayfile.readline()
-    pubipline = pubipfile.readline()
-    externalline = connectionfile.readline()
-    userline = userfile.readline()
-"""
 def parse_logs_speed():
     global uploadspeedfile,downloadspeedfile,latencyfile, ispfile
 
@@ -57,11 +41,7 @@ def get_info_from_lines_speed():
     downloadspeedline = downloadspeedfile.readline()
     ispline = ispfile.readline()
 
-"""
-def init_connection():
-    parse_logs_connection()
-    get_info_from_lines_connection()
-"""
+
 def init_speed():
     parse_logs_speed()
     get_info_from_lines_speed()
@@ -103,51 +83,3 @@ def get_isp():
     else:
         return "Other"
 
-"""
-def get_external_status():
-    if "ok" in externalline.lower():
-        return "OK"
-    else:
-        return "DOWN"
-
-def get_gateway():
-    gate=gatewayline.replace("\n", "")
-    return gate
-
-def get_pubip():
-    pubip = pubipline.replace("\n", "")
-    return pubip
-
-def get_username():
-    username = userline.replace("\n", "")
-    return username
-"""
-"""
-def test(a):
-    init_connection()
-    init_speed()
-
-    gateway = get_gateway()
-    pubip = get_pubip()
-    username = get_username()
-
-    latency = get_latency()
-    #isp = get_isp(ispline)
-    area = get_area()
-    externalstatus = get_external_status()
-
-    uploadspeed="20"
-    downloadspeed="44"
-
-    if a == 1:
-        outputfile = open(projectpath + "/SEND.txt", "a")
-        outputfile.write(
-            username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + area + ";")
-        outputfile.write("\n")
-        outputfile.close()
-    else:
-        print (  username + ";" + gateway + ";" + pubip + ";" + externalstatus + ";" + uploadspeed + ";" + downloadspeed + ";" + latency + ";" + downloadspeed + ";" + area + ";")
-
-#test(1) to print to file, test(0) to print to terminal
-test(0)
-"""
