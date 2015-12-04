@@ -1,4 +1,4 @@
 #! /bin/bash
 
-cd /home/pi/Documents/csf-master/
-sh /home/pi/Documents/csf-master/SPEED_fulltest.sh
+cd /home/pi/Documents/goodnet/client
+sh /home/pi/Documents/goodnet/client/SPEED_fulltest.sh

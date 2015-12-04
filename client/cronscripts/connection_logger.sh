@@ -1,3 +1,3 @@
 #! /bin/bash
-cd python /home/pi/Documents/csf-master/operations/
-python /home/pi/Documents/csf-master/operations/connection_logger.py
+cd  /home/pi/Documents/goodnet/client/operations/
+python /home/pi/Documents/goodnet/client/operations/connection_logger.py
