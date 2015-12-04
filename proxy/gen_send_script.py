@@ -2,8 +2,10 @@ import os
 
 
 
-project_path = os.path.dirname(os.path.abspath(__file__))
+#project_path = os.path.dirname(os.path.abspath(__file__))
+project_path = "/home/proxy/goodnet/proxy"
 file_path = project_path+"/auto_gen.sh"
+
 
 f = open(file_path,'w')
 
@@ -21,9 +23,9 @@ def add_pi_folder(path):
 
 
 
+logs_path = "/home/proxy"
 
-
-data_path = project_path+"/raw_data"+"/pi"
+data_path = logs_path+"/raw_data"+"/pi"
 current_pi_path = data_path+"1"
 
 #print(current_pi_path)
