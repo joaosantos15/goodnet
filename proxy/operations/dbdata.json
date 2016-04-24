@@ -1,3 +1,3 @@
 {
-  "db":[{"user":"ist174008","password":"jrah0312","host":"db.ist.utl.pt","database":"ist174008"}]
+  "db":[{"user":"your_username","password":"your_password","host":"your_host_url","database":"your_db_name"}]
 }
